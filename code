@@ -1,0 +1,276 @@
+1. Basic Calculator
+✅ Java Code
+package com.devops;
+
+public class Calculator {
+
+    public int add(int a, int b) {
+        return a + b;
+    }
+
+    public int subtract(int a, int b) {
+        return a - b;
+    }
+
+    public int multiply(int a, int b) {
+        return a * b;
+    }
+
+    public int divide(int a, int b) {
+        return a / b;
+    }
+}
+---------------------------------------------------
+✅ JUnit Test
+package com.devops;
+
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+class CalculatorTest {
+
+    Calculator c = new Calculator();
+
+    @Test
+    void testAdd() {
+        assertEquals(10, c.add(5, 5));
+    }
+
+    @Test
+    void testSubtract() {
+        assertEquals(2, c.subtract(5, 3));
+    }
+
+    @Test
+    void testMultiply() {
+        assertEquals(20, c.multiply(4, 5));
+    }
+
+    @Test
+    void testDivide() {
+        assertEquals(2, c.divide(10, 5));
+    }
+}
+----------------------------------
+2. Simple Greeting API
+✅ Java Code
+package com.devops;
+
+public class Greeting {
+
+    public String getMessage(String name) {
+        return "Hello " + name;
+    }
+}
+✅ JUnit Test
+package com.devops;
+
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+class GreetingTest {
+
+    Greeting g = new Greeting();
+
+    @Test
+    void testMessage() {
+        assertEquals("Hello Priyanka", g.getMessage("Priyanka"));
+    }
+}
+----------------------------------------------------------------
+3. Linear Search
+✅ Java Code
+package com.devops;
+
+public class Search {
+
+    public int linearSearch(int[] arr, int key) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == key)
+                return i;
+        }
+        return -1;
+    }
+}
+✅ JUnit Test
+package com.devops;
+
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+class SearchTest {
+
+    Search s = new Search();
+
+    @Test
+    void testFound() {
+        assertEquals(2, s.linearSearch(new int[]{10,20,30}, 30));
+    }
+
+    @Test
+    void testNotFound() {
+        assertEquals(-1, s.linearSearch(new int[]{10,20,30}, 50));
+    }
+}
+------------------------------------------------------
+4. Compare 3 Numbers (Highest Number)
+✅ Java Code
+package com.devops;
+
+public class CompareNumbers {
+
+    public int findMax(int a, int b, int c) {
+        if (a >= b && a >= c)
+            return a;
+        else if (b >= a && b >= c)
+            return b;
+        else
+            return c;
+    }
+}
+✅ JUnit Test
+package com.devops;
+
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+class CompareNumbersTest {
+
+    CompareNumbers c = new CompareNumbers();
+
+    @Test
+    void testMax() {
+        assertEquals(90, c.findMax(10, 90, 30));
+    }
+}
+---------------------------------------------------------
+5. Bank Account System
+✅ Java Code
+package com.devops;
+
+public class BankAccount {
+
+    private int balance = 0;
+
+    public int getBalance() {
+        return balance;
+    }
+
+    public void deposit(int amount) {
+        balance += amount;
+    }
+
+    public boolean withdraw(int amount) {
+        if (amount <= balance) {
+            balance -= amount;
+            return true;
+        }
+        return false;
+    }
+}
+✅ JUnit Test
+package com.devops;
+
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+class BankAccountTest {
+
+    BankAccount b = new BankAccount();
+
+    @Test
+    void testDeposit() {
+        b.deposit(1000);
+        assertEquals(1000, b.getBalance());
+    }
+
+    @Test
+    void testWithdrawSuccess() {
+        b.deposit(1000);
+        assertTrue(b.withdraw(500));
+        assertEquals(500, b.getBalance());
+    }
+
+    @Test
+    void testWithdrawFail() {
+        assertFalse(b.withdraw(500));
+    }
+}
+------------------------------------
+  package com.devops;
+
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+class BankAccountTest {
+
+    BankAccount account;
+
+    // Runs before each test case
+    @BeforeEach
+    void setUp() {
+        account = new BankAccount();
+    }
+
+    // Test deposit functionality
+    @Test
+    void testDeposit() {
+        account.deposit(1000);
+        assertEquals(1000, account.getBalance());
+    }
+
+    // Test successful withdrawal
+    @Test
+    void testWithdrawSuccess() {
+        account.deposit(1000);
+        boolean result = account.withdraw(500);
+
+        assertTrue(result);
+        assertEquals(500, account.getBalance());
+    }
+
+    // Test failed withdrawal (insufficient balance)
+    @Test
+    void testWithdrawFailure() {
+        account.deposit(300);
+        boolean result = account.withdraw(500);
+
+        assertFalse(result);
+        assertEquals(300, account.getBalance());
+    }
+
+    // Test multiple transactions
+    @Test
+    void testMultipleTransactions() {
+        account.deposit(1000);
+        account.withdraw(200);
+        account.deposit(500);
+
+        assertEquals(1300, account.getBalance());
+    }
+}
+-----------------------------------------------------------------------
+🚀 How to Run in Jenkins + JaCoCo
+✅ Step 1: Run Tests (Maven)
+mvn test
+✅ Step 2: Add JaCoCo Plugin in pom.xml
+<plugin>
+  <groupId>org.jacoco</groupId>
+  <artifactId>jacoco-maven-plugin</artifactId>
+  <version>0.8.11</version>
+  <executions>
+    <execution>
+      <goals>
+        <goal>prepare-agent</goal>
+      </goals>
+    </execution>
+    <execution>
+      <id>report</id>
+      <phase>test</phase>
+      <goals>
+        <goal>report</goal>
+      </goals>
+    </execution>
+  </executions>
+</plugin>
