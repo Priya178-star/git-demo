@@ -73,9 +73,9 @@ git config --global user.email "priyankasvpriyankasv@gmail.com
 git init
 git add .
 git commit -m "first commit"
-git 
-
-
+git branch -M main
+git remote add origin https://github.com/Priya178-star/git_demo1.git
+git push -u origin main
 
 ------------------------------------------------------------------------------------------------------------------------------------------
 Experiment 14: Test Coverage using JaCoCo
@@ -250,3 +250,62 @@ class CalculatorTest {
 Commands:
 Mvn clean test
 Mvn clean verify
+------------------------------------------------------------------------------------------------------------------------------------
+Experiment 15:
+docker --version
+wsl --update
+docker pull hello-world
+docker run hello-world
+docker pull caddy
+docker run caddy
+docker ps
+docker ps -a
+docker rm <container-id>
+docker images
+docker rmi hello-world
+----------------------------------------------------------------------------------------------------------------------------------------
+Experiment 16:
+-Open vs code install Docker Extension pack 
+-Open Desktop create a 'DockerProject' folder inside it create another folder 'java-image'
+-inside java image create Dockerfile and sample.java files
+-Sample.java
+class Sample{
+    public static void main(String[] args){
+        System.out.println("Hello world from Docker");
+}
+}
+
+-Dockerfile
+FROM eclipse-temurin:17
+
+WORKDIR /app
+
+COPY Sample.java .
+
+RUN javac Sample.java
+
+CMD ["java", "Sample"]
+
+-Open this folder and terminal 
+>>cd java-image
+>>javac Sample.java
+>>java Sample
+
+-Open CMD and run this
+>>docker build -t my-java-app
+>>docker run my-java-app
+-------------------------------------------------------------------------------------------------------------------------------
+Experiment 17:
+>> docker --version
+>> docker ps -a
+>> docker container prune
+>> docker ps -a
+>> docker pull nginx
+>> docker login
+>>docker images
+>>docker run nginx
+>>docker run -p 8082:80 -d <image-id>
+-Open http://localhost:8082
+-------------------------------------------------------------------------------------------------------------------------------------
+Experiment 18:
+
