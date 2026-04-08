@@ -1,3 +1,83 @@
+Experiment 11:
+(1) Using Eclipse:
+package Demo_java;
+
+public class Calculator {
+
+    public int add(int a, int b) {
+        return a + b;
+    }
+
+    public int subtract(int a, int b) {
+        return a - b;
+    }
+
+    public int multiply(int a, int b) {
+        return a * b;
+    }
+
+    public int divide(int a, int b) {
+        return a / b;
+    }
+}
+---------------------------------------------------
+
+package Demo_java;
+
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+
+public class CalculatorTest {
+
+    Calculator calc = new Calculator();
+
+    @Test
+    public void testAdd() {
+        assertEquals(5, calc.add(2, 3));
+    }
+
+    @Test
+    public void testSubtract() {
+        assertEquals(2, calc.subtract(5, 3));
+    }
+
+    @Test
+    public void testMultiply() {
+        assertEquals(6, calc.multiply(2, 3));
+    }
+
+    @Test
+    public void testDivide() {
+        assertEquals(2, calc.divide(6, 3));
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------
+(2) Using VS code:
+https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.10.1/junit-platform-console-standalone-1.10.1.jar
+
+javac -cp ".;lib\junit-platform-console-standalone-1.10.1.jar" -d bin Calculator.java CalculatorTest.java
+
+java -jar lib\junit-platform-console-standalone-1.10.1.jar --class-path bin --scan-class-path --details=tree
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+Experminet 12:
+java --version
+mvn --version
+mvn archetype:generate
+mvn package
+mvn test
+---------------------------------------------------------------------------------------------------------------------------------------------------
+Experiment 13:
+git config --global user.name priyanka
+git config --global user.email "priyankasvpriyankasv@gmail.com
+git init
+git add .
+git commit -m "first commit"
+git 
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
 Experiment 14: Test Coverage using JaCoCo
 Objective
 To measure software code quality by evaluating test coverage using the JaCoCo tool.
