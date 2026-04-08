@@ -1,0 +1,172 @@
+Experiment 14: Test Coverage using JaCoCo
+Objective
+To measure software code quality by evaluating test coverage using the JaCoCo tool.
+Tools Required
+•	Java (JDK 8 or above) 
+•	Maven/Gradle 
+•	IDE (Eclipse / IntelliJ IDEA) 
+•	JaCoCo Plugin 
+JaCoCo (Java Code Coverage) is a popular library used to measure how much of your code is tested by unit tests. It provides metrics such as:
+•	Line Coverage 
+•	Branch Coverage 
+•	Method Coverage 
+•	Class Coverage 
+Higher coverage generally indicates better-tested and more reliable code.
+Steps to Use JaCoCo with Maven
+Step 1: Create a Simple Java Project
+Create a basic Maven project with a sample class.
+Calculator.java
+public class Calculator {
+
+    public int add(int a, int b) {
+        return a + b;
+    }
+
+    public int divide(int a, int b) {
+        if (b == 0) {
+            throw new IllegalArgumentException("Cannot divide by zero");
+        }
+        return a / b;
+    }
+}
+Step 2: Write JUnit Test Cases
+Create test cases for the above class.
+CalculatorTest.java
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+public class CalculatorTest {
+
+    Calculator calc = new Calculator();
+
+    @Test
+    public void testAdd() {
+        assertEquals(5, calc.add(2, 3));
+    }
+
+    @Test
+    public void testDivide() {
+        assertEquals(2, calc.divide(4, 2));
+    }
+}
+Step 3: Add JaCoCo Plugin in pom.xml
+Add the JaCoCo plugin inside the <build> section.
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.11</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>prepare-agent</goal>
+                    </goals>
+                </execution>
+                <execution>
+                    <id>report</id>
+                    <phase>test</phase>
+                    <goals>
+                        <goal>report</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
+Step 4: Run Tests and Generate Coverage Report
+Open terminal in the project directory and run:
+mvn clean test
+Step 5: View the Coverage Report
+After execution, JaCoCo generates the report at:
+target/site/jacoco/index.html
+Open index.html in a browser to see:
+•	Instruction coverage
+•	Line coverage
+•	Branch coverage
+•	Method coverage
+•	Class coverage
+Example Output
+If only add() and normal divide() are tested:
+•	add() → fully covered
+•	divide() → partially covered (exception branch not tested)
+Coverage might show:
+•	Line coverage: 80–90%
+•	Branch coverage: 50%
+Step 6: Improve Coverage
+Add a test for the exception case:
+@Test
+public void testDivideByZero() {
+    assertThrows(IllegalArgumentException.class, () -> {
+        calc.divide(4, 0);
+    });
+}
+Run again:
+mvn clean test
+
+
+
+Update the Calculator.java and CalculatorTest.java as follows (Complete Code)
+Calculator.java
+package SimpleCalculator;
+
+	public class Calculator {
+
+	    public int add(int a, int b) {
+	        return a + b;
+	    }
+
+	    public int subtract(int a, int b) {
+	        return a - b;
+	    }
+
+	    public int multiply(int a, int b) {
+	        return a * b;
+	    }
+
+	    public int divide(int a, int b) {
+	        if (b == 0) {
+	            throw new ArithmeticException("Division by zero is not allowed.");
+	        }
+	        return a / b;
+	    }
+	}
+
+
+CalculatorTest.java
+package SimpleCalculator;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+class CalculatorTest {
+
+	 Calculator cal=new Calculator();
+    @Test
+    public void testAdd() {
+        int result = cal.add(2, 3);
+        assertEquals(5, result);
+    }
+    @Test
+    public void testSubtract() {
+        int result = cal.subtract(5, 2);
+        assertEquals(3, result);
+    }
+    @Test
+    public void testMultiply() {
+        int result = cal.multiply(4, 5);
+        assertEquals(20, result);
+    }
+    @Test
+    public void testDivide() {
+        int result = cal.divide(10, 2);
+        assertEquals(5, result);
+    }
+    @Test
+    void testDivisionByZero() {
+        assertThrows(ArithmeticException.class, () -> {
+            cal.divide(10, 0);
+        });
+}
+}
+Commands:
+Mvn clean test
+Mvn clean verify
