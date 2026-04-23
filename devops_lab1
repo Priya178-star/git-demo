@@ -1,0 +1,81 @@
+experiment 1:
+>>cd Desktop
+>> mkdir Devops_exp1
+>> cd Devops_exp1
+>> git init
+>> git config --global user.name Priya
+>> git config --global user.email "priyasv@gmail.com"
+>> git ls
+>> echo "This is first git exp">README.txt
+>> git status
+>> git add .
+>> git status
+>>  git commit -m "Initail commit"
+>> echo "Git track changes">README.txt
+>> git status
+>> git add .
+>> git status
+>> git log
+>> git checkout README.txt
+>> history -a
+
+  -------------------------------------------------------------------------------------------------------------------------------------
+
+  Experiment 2:
+
+teps / Procedure 
+1. Initialize or Open a Git Repository 
+o Open the terminal. 
+o Navigate to the project directory. 
+o Initialize Git (if not already initialized): 
+>>git init 
+2. Check the Current Branch 
+o Verify the active branch (usually main or master): 
+>>git branch 
+3. Create a Feature Branch 
+o Create a new branch named feature-branch: 
+>>git branch feature-branch 
+4. Switch to the Feature Branch 
+o Move to the newly created branch: 
+>>git checkout feature-branch 
+5. Make Changes in the Feature Branch 
+o Edit or add files to implement a new feature. 
+o Check the status: 
+>>git status 
+6. Commit Changes in the Feature Branch 
+o Stage the changes: 
+>>git add . 
+o Commit the changes: 
+o git commit -m "Added new feature in feature branch" 
+7. Switch Back to the Main Branch 
+o Return to the main branch: 
+>>git checkout main 
+8. Make Changes in the Main Branch (for Conflict Practice) 
+o Modify the same file that was edited in the feature branch. 
+o Commit the changes: 
+>>git add . 
+>>git commit -m "Updated file in main branch" 
+9. Merge Feature Branch into Main Branch 
+o Merge the feature branch: 
+>>git merge feature-branch 
+10. Resolve Merge Conflicts (If Any) 
+o Open conflicted files and manually resolve differences. 
+o After resolving, stage the file: 
+>>git add <filename> 
+o Complete the merge: 
+>>git commit 
+10a) Hit Enter it will open tortoise merge tool  
+10 b) Right click on Mine- File1_local_1083 and select 3rd option (use block from 
+right before left) 
+10 c) Click on Save button 
+10 d) 
+11. Verify the Merge 
+o Check commit history: 
+>>git log --oneline 
+12. Delete the Feature Branch (Optional) 
+o Remove the feature branch after successful merge: 
+>>git branch -d feature-branch 
+
+  ------------------------------------------------------------------------------------------------------------------
+  Experiment 3:
+
